@@ -6,7 +6,7 @@ on:
     branches: 
       - master
   schedule:
-    - cron: '0 * 7-19 ? * MON-FRI'
+    - cron: '*/1 7-8,10,13-14,18 * * MON-FRI'
 
 jobs:
   get_points:
