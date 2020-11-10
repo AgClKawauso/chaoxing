@@ -2,9 +2,6 @@
 name: 'chaoxing'
 
 on:
-  push:
-    tags:
-    - 'v*'
   schedule:
     - cron: '*/6 7-8,10,13-14,18 * * MON-FRI'
 
