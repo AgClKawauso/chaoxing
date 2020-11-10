@@ -1,0 +1,31 @@
+name: 'chaoxing'
+
+on:
+  push:
+    tags:
+      - 'v*'
+  schedule:
+    - cron: '*/5 7-8,10,13-14,18 * * MON-FRI'
+  watch:
+    types: [started]
+
+jobs:
+  get_points:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout codes'
+      uses: actions/checkout@v2
+    - name: 'Setup python'
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+    - name: 'Install dependencies'
+      run: python -m pip install --upgrade requests
+    - name: 'Qiandao'
+      env:
+        CHAOXING_USERNAME: ${{ secrets.CHAOXING_USERNAME }}
+        CHAOXING_PASSWORD: ${{ secrets.CHAOXING_PASSWORD }}
+        CHAOXING_SCHOOL: ${{ secrets.CHAOXING_SCHOOL }}
+        CHAOXING_SERVER: ${{ secrets.CHAOXING_SERVER }}
+        CHAOXING_SERVEROR: ${{ secrets.CHAOXING_SERVEROR }}
+      run: python cx.py
